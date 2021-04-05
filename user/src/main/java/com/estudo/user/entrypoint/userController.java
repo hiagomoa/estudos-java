@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @Slf4j
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -69,9 +70,9 @@ public class userController {
         }
     }
 
-    @GetMapping("/auth")
+    @PostMapping("/auth")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity autentication(@RequestBody ViewModelAutenticate auth) {
+    public ResponseEntity<User> autentication(@RequestBody ViewModelAutenticate auth) {
         System.out.println("Get method with code:");
         User user = null;
         user = getUserByEmailAndPassword.execute(auth.getEmail(), auth.getPassword());
@@ -79,7 +80,7 @@ public class userController {
             return ResponseEntity.ok().body(user);
         }
         else{
-            return ResponseEntity.status(500).body("Usuario não encontrado");
+            return ResponseEntity.status(400).build();
         }
     }
 }

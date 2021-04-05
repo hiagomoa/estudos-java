@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class JDBCConfigs {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-   static final String DB_URL = "jdbc:oracle:thin:@localhost:49161/xe";
+   static final String DB_URL = "jdbc:oracle:thin:@172.17.0.2:49161/xe";
    // static final String DB_URL = "jdbc:oracle:thin:@localhost:49161:ORCL";
 
     //  Database credentials

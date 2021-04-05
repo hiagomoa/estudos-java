@@ -31,9 +31,9 @@ public class GetAllUsersInDataBaseImpl implements GetAllUsersInDataBase {
             stmt.execute("GRANT UNLIMITED TABLESPACE TO USUARIOS");
             ResultSet rs = stmt.executeQuery(sql);
 
-
+            User user;
             while (rs.next()) {
-                User user = new User();
+                user = new User();
                 user.setEmail(rs.getString("email"));
                 user.setId(rs.getString("id"));
                 user.setName(rs.getString("name"));

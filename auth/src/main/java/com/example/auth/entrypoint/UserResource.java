@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserResource {
     @Autowired
     private UserService service;
+
+    @CrossOrigin
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -22,15 +25,17 @@ public class UserResource {
         System.out.println("Get method with code:");
     }
 
-    @GetMapping(value = "/search")
+    @CrossOrigin
+    @PostMapping(value = "/search")
     public ResponseEntity findByEmail(@RequestBody ViewModelAutenticate auth) {
         System.out.println("OPAAA");
-        try {
-            service.findByEmail(auth);
-            return ResponseEntity.ok("OK");
-        }
-        catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+
+            ResponseEntity response = service.findByEmail(auth);
+            if(response.getStatusCodeValue() == 200){
+                System.out.println("CODIGO 200");
+                return ResponseEntity.status(200).body(response.getBody());
+            }
+            return ResponseEntity.status(400).build();
+
     }
 }

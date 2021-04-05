@@ -4,7 +4,7 @@ spring:
   application:
     name: user
   datasource:
-    url: jdbc:oracle:thin:@localhost:49161/xe
+    url: jdbc:oracle:thin:@172.17.0.1:49161/xe
     username: system
     password: oracle
     driver-class-name: oracle.jdbc.OracleDriver
