@@ -2,6 +2,7 @@ package com.estudo.user.entrypoint;
 
 import com.estudo.user.Entity.User;
 import com.estudo.user.external.database.GetUserByEmailAndPasswordImpl;
+import com.estudo.user.external.database.GetUserByEmailImpl;
 import com.estudo.user.usecase.IncludeUser;
 import com.estudo.user.usecase.SearchAllUsers;
 import com.estudo.user.usecase.UpdateUser;
@@ -32,6 +33,9 @@ public class userController {
     @Autowired
     GetUserByEmailAndPasswordImpl getUserByEmailAndPassword;
 
+    @Autowired
+    GetUserByEmailImpl getUserByEmail;
+
 
 
     @GetMapping("/all")
@@ -40,6 +44,16 @@ public class userController {
         System.out.println("Get method with code:");
         final List<User> userList = searchAllUsers.execute();
         return ResponseEntity.ok().body(userList);
+    }
+
+    @GetMapping("/searchByEmail")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity getUserByEmail(@RequestBody User userEmail) {
+        System.out.println("VEIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+        System.out.println("Get method with code: " + userEmail.getEmail());
+        User user = getUserByEmail.execute(userEmail.getEmail());
+        System.out.println(user.getEmail()+ " " + user.getName());
+        return ResponseEntity.ok().body(user);
     }
 
     @PostMapping("/all1")

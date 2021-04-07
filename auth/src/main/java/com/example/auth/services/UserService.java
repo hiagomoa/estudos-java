@@ -25,6 +25,19 @@ public class UserService {
         }catch (Exception e){
             return ResponseEntity.status(400).body("Erro");
         }
+    }
 
+    public void findByEmail1(String email){
+        User user = new User();
+        user.setEmail(email);
+        try{
+            System.out.println("ENTROUUUUUUUUUUUUUUUUUUUUUUUU: " + email);
+            ResponseEntity userResponse = userFeignClient.getUserByEmail(user);
+            System.out.println("USER: " + userResponse);
+            user = (User) userResponse.getBody();
+            
+        }catch (Exception e){
+            System.out.println("ERRO");
+        }
     }
 }

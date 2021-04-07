@@ -18,4 +18,8 @@ public interface  UserFeignClient {
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<User> autentication(@RequestBody ViewModelAutenticate auth);
 
+    @GetMapping("/searchByEmail")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity getUserByEmail(@RequestBody User userEmail);
+
 }
