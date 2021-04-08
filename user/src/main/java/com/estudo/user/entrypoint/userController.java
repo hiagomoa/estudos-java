@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @Slf4j
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,7 +37,7 @@ public class userController {
     GetUserByEmailImpl getUserByEmail;
 
 
-
+    @CrossOrigin
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity getVaccineByName() {
@@ -46,6 +46,7 @@ public class userController {
         return ResponseEntity.ok().body(userList);
     }
 
+    @CrossOrigin
     @GetMapping("/searchByEmail")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity getUserByEmail(@RequestBody User userEmail) {
@@ -56,6 +57,7 @@ public class userController {
         return ResponseEntity.ok().body(user);
     }
 
+    @CrossOrigin
     @PostMapping("/all1")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity insertUser(@RequestBody User userParam) {
@@ -71,6 +73,7 @@ public class userController {
     }
 
 
+    @CrossOrigin
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity updateUser(@RequestBody User userParam, @PathVariable String id) {
@@ -84,6 +87,7 @@ public class userController {
         }
     }
 
+    @CrossOrigin
     @PostMapping("/auth")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<User> autentication(@RequestBody ViewModelAutenticate auth) {

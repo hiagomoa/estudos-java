@@ -15,19 +15,19 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     //Configuração de autenticação
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       // http.authorizeRequests().antMatchers("/auth").permitAll()
-        //.antMatchers(HttpMethod.POST, "/auth/all").permitAll().anyRequest().permitAll();
-        http.cors().and().csrf().disable();
+        http.cors().disable();
+        http.authorizeRequests().anyRequest().permitAll();
+        http.csrf().disable();
     }
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 }
