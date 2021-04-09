@@ -27,8 +27,23 @@ public class GetAllUsersInDataBaseImpl implements GetAllUsersInDataBase {
             stmt = conn.createStatement();
             String sql = "SELECT * FROM USUARIOS.USUARIOS";
 
+//            String sqlCategory = "CREATE TABLE USUARIOS.CATEGORIA(" +
+//                    "ID INTEGER PRIMARY KEY, NOME VARCHAR(255), TIPO VARCHAR(255)"+")";
+//            String newSql = "CREATE TABLE USUARIOS.TASKS (" +
+//                    "ID INTEGER PRIMARY KEY, " +
+//                    "NOME VARCHAR(255), " +
+//                    "ID_USUARIO VARCHAR(255), " +
+//                    "ID_CATEGORIA INTEGER, " +
+//                    "FOREIGN KEY(ID_USUARIO) " +
+//                    "REFERENCES USUARIOS.USUARIOS(ID), " +
+//                    "FOREIGN KEY(ID_CATEGORIA) " +
+//                    "REFERENCES USUARIOS.CATEGORIA(ID)" +
+//                    ")";
             stmt.executeUpdate("GRANT CONNECT TO USUARIOS");
+
             stmt.execute("GRANT UNLIMITED TABLESPACE TO USUARIOS");
+//            stmt.executeQuery(sqlCategory);
+//            stmt.executeQuery(newSql);
             ResultSet rs = stmt.executeQuery(sql);
 
             User user;
