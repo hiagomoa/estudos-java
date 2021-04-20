@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-public class userController {
+public class UserController {
     @Autowired
     SearchAllUsers searchAllUsers;
 

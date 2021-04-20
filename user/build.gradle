@@ -37,6 +37,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test',
 			'org.spockframework:spock-core:1.2-groovy-2.5',
 			'org.spockframework:spock-spring:1.2-groovy-2.5'
+
 }
 
 dependencyManagement {
