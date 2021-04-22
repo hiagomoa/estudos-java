@@ -1,5 +1,6 @@
 package com.estudo.user.Entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
@@ -16,6 +17,15 @@ public class User implements Serializable {
     public User() {
         super();
     }
+
+    @JsonCreator
+    public User(String id, String name, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+    }
+
 
     public String  getId() {
         return id;
